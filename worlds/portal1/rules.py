@@ -132,5 +132,8 @@ def set_all_location_rules(world: Portal1World) -> None:
 
 def set_completion_condition(world: Portal1World) -> None:
     world.multiworld.completion_condition[world.player] = lambda state: state.has(
-        "Defeat GLaDOS", world.player
+        "Progressive Portal Gun (2 Portals)",
+        world.player,
+        # TODO: Once enough locations are implemented, make the below the win condition
+        # "Defeat GLaDOS", world.player
     )

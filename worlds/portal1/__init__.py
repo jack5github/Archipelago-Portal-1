@@ -61,4 +61,15 @@ class Portal1World(World):
         return items.get_random_filler_item_name(self)
 
     def fill_slot_data(self) -> Mapping[str, Any]:
-        return self.options.as_dict(*self.options_dataclass.__dataclass_fields__.keys())
+        return self.options.as_dict(
+            # TODO: Use a more dynamic way to get this list
+            *[
+                "starting_map",
+                "advanced_chambers",
+                "advanced_chamber_count",
+                "escape_sequence",
+                "radios",
+                "dinosaur_hunt",
+                "trap_chance",
+            ]
+        )

@@ -72,4 +72,4 @@ def connect_regions(world: Portal1World) -> None:
         ):
             continue
         region = world.get_region(region)
-        region.connect(menu, f"{menu.name} to {region.name}")
+        menu.connect(region, f"{menu.name} to {region.name}")
