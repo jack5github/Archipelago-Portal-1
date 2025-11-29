@@ -6,22 +6,45 @@ if TYPE_CHECKING:
     from . import Portal1World
 
 DEFAULT_ITEM_CLASSIFICATIONS = {
+    "Chambers 00-01": ItemClassification.progression,
+    "Chambers 02-03": ItemClassification.progression,
+    "Chambers 04-05": ItemClassification.progression,
+    "Chambers 06-07": ItemClassification.progression,
+    "Chamber 08": ItemClassification.progression,
+    "Chamber 09": ItemClassification.progression,
+    "Chamber 10": ItemClassification.progression,
+    "Chambers 11-12": ItemClassification.progression,
+    "Chamber 13": ItemClassification.progression,
+    "Chamber 13 (Advanced)": ItemClassification.progression,
+    "Chamber 14": ItemClassification.progression,
+    "Chamber 14 (Advanced)": ItemClassification.progression,
+    "Chamber 15": ItemClassification.progression,
+    "Chamber 15 (Advanced)": ItemClassification.progression,
+    "Chamber 16": ItemClassification.progression,
+    "Chamber 16 (Advanced)": ItemClassification.progression,
+    "Chamber 17": ItemClassification.progression,
+    "Chamber 17 (Advanced)": ItemClassification.progression,
+    "Chamber 18": ItemClassification.progression,
+    "Chamber 18 (Advanced)": ItemClassification.progression,
+    "Chamber 19 & Escape Part 1": ItemClassification.progression,
+    "Escape Part 2": ItemClassification.progression,
+    "Escape Part 3": ItemClassification.progression,
+    "Escape Part 4 & GLaDOS' Chamber": ItemClassification.progression,
     "Progressive Portal Gun (1 Portal)": (
         ItemClassification.progression | ItemClassification.useful
     ),
     "Progressive Portal Gun (2 Portals)": (
         ItemClassification.progression | ItemClassification.useful
     ),
+    "Speedup": ItemClassification.filler,
+    "Slowdown": ItemClassification.trap,
+}
+# TODO: Restore these items once there are more locations than items
+"""
     "Long Fall Boots": ItemClassification.progression | ItemClassification.useful,
     "HEV Suit (Faster Walk Speed)": ItemClassification.useful,
     "Progressive Dinosaur Radar (1: Find Radios)": ItemClassification.useful,
     "Progressive Dinosaur Radar (2: Find Noises)": ItemClassification.useful,
-    "Speedup": ItemClassification.filler,
-    "Slowdown": ItemClassification.trap,
-    "Chambers 00-01 Unlock": ItemClassification.progression,
-}
-# TODO: Restore these items once there are more locations than items
-"""
     "Blindness": ItemClassification.trap,
     "Stuck": ItemClassification.trap,
     "Low Gravity": ItemClassification.filler,
@@ -41,30 +64,6 @@ DEFAULT_ITEM_CLASSIFICATIONS = {
     "Instant Energy Pellet": ItemClassification.trap,
     "Turret": ItemClassification.trap,
     "Rocket Turret": ItemClassification.trap,
-    # TODO: Move "Chambers 00-01 Unlock" here
-    "Chambers 02-03 Unlock": ItemClassification.progression,
-    "Chambers 04-05 Unlock": ItemClassification.progression,
-    "Chambers 06-07 Unlock": ItemClassification.progression,
-    "Chamber 08 Unlock": ItemClassification.progression,
-    "Chamber 09 Unlock": ItemClassification.progression,
-    "Chamber 10 Unlock": ItemClassification.progression,
-    "Chambers 11-12 Unlock": ItemClassification.progression,
-    "Chamber 13 Unlock": ItemClassification.progression,
-    "Chamber 13 (Advanced) Unlock": ItemClassification.progression,
-    "Chamber 14 Unlock": ItemClassification.progression,
-    "Chamber 14 (Advanced) Unlock": ItemClassification.progression,
-    "Chamber 15 Unlock": ItemClassification.progression,
-    "Chamber 15 (Advanced) Unlock": ItemClassification.progression,
-    "Chamber 16 Unlock": ItemClassification.progression,
-    "Chamber 16 (Advanced) Unlock": ItemClassification.progression,
-    "Chamber 17 Unlock": ItemClassification.progression,
-    "Chamber 17 (Advanced) Unlock": ItemClassification.progression,
-    "Chamber 18 Unlock": ItemClassification.progression,
-    "Chamber 18 (Advanced) Unlock": ItemClassification.progression,
-    "Chamber 19 & Escape Part 1 Unlock": ItemClassification.progression,
-    "Escape Part 2 Unlock": ItemClassification.progression,
-    "Escape Part 3 Unlock": ItemClassification.progression,
-    "Escape Part 4 & GLaDOS' Chamber Unlock": ItemClassification.progression,
     "Defeat GLaDOS": ItemClassification.progression,
 """
 
@@ -146,13 +145,11 @@ def create_all_items(world: Portal1World) -> None:
     world.multiworld.itempool += itempool
 
     if world.options.starting_map == StartingMap.option_chamber_00:
-        world.push_precollected(world.create_item("Chambers 00-01 Unlock"))
+        world.push_precollected(world.create_item("Chambers 00-01"))
     else:
-        choices: list[str] = [
-            k for k in DEFAULT_ITEM_CLASSIFICATIONS.keys() if "Unlock" in k
-        ]
+        choices: list[str] = list(DEFAULT_ITEM_CLASSIFICATIONS.keys())[:23]
         if world.options.starting_map == StartingMap.option_random_chamber:
-            choices = [k for k in choices if k.startswith("Chamber")]
+            choices = [k for k in choices if "Escape" not in k]
         world.push_precollected(world.create_item(world.random.choice(choices)))
 
 
