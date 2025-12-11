@@ -521,7 +521,9 @@ option_groups: typing.List[OptionGroup] = [
             GameMedleyMode,
             GameMedleyPercentageChance,
             GameMedleyGameSelection,
+            GameMedleyGameSelectionBagSize,
             GameSelection,
+            GameMedleyGameSelectionBagSize,
         ],
     ),
     OptionGroup(
