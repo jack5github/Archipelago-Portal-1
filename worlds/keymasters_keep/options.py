@@ -106,7 +106,7 @@ class KeepAreas(Range):
     display_name: str = "Keep Areas"
 
     range_start: int = 10
-    range_end: int = 99  # Must leave one ID open for completion location
+    range_end: int = 100
 
     default = 20
 

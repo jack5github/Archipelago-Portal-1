@@ -755,7 +755,7 @@ for index, (region, trial_location, completion_location, trials_tag) in enumerat
         )
     location_data[completion_location] = KeymastersKeepLocationData(
         name=completion_location.value,
-        archipelago_id=1000 + (index * 100) + 99,
+        archipelago_id=100000 + index,
         region=region,
         tags=(KeymastersKeepTags.COMPLETIONS, trials_tag),
     )
